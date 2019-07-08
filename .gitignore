@@ -1,0 +1,13 @@
+# Mac
+.DS_Store
+**/.DS_Store
+
+# Virtual env
+venv/
+env/
+.venv/
+.env/
+
+# dotenv file
+.env
+**/.env
