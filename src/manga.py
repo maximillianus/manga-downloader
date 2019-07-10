@@ -51,9 +51,11 @@ def download_chapter(manga_name, chapter):
     img_tags = soup.find_all('img')
     urls = [img['src'] for img in img_tags if 'src' in img.attrs.keys()]
 
-    if not os.path.isdir('/Users/adityap/Downloads/manga/'+manga_name+'/'+chapter):
-        os.makedirs('/Users/adityap/Downloads/manga/'+manga_name+'/'+chapter)
-    os.chdir('/Users/adityap/Downloads/manga/'+manga_name+'/'+chapter)
+    tgt_filedir = os.path.join(os.getenv('MANGADIR'), manga_name, chapter)
+    print(tgt_filedir)
+    if not os.path.isdir(tgt_filedir):
+        os.makedirs(tgt_filedir)
+    os.chdir(tgt_filedir)
     for url in urls:
         x = re.search('[0-9]*-[0-9]*\.(png|jpg)$', url)
         print(x)
@@ -64,7 +66,6 @@ def download_chapter(manga_name, chapter):
                 f.write(response.content)
         else:
             print('chapter page image not found')
-
 
 
 if __name__ == "__main__":
